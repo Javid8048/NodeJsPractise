@@ -1,0 +1,11 @@
+NPM
+
+npm install express --save-dev
+npm install express --save --production
+
+
+NODE
+
+fs        readFile, writeFile, readFileAsync, writeFileAsync, createReadStream
+http      createServer
+event     on, emit

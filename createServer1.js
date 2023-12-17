@@ -9,6 +9,9 @@ const server = http.createServer((req, res) => {
     else if(req.url === "/about") {
         res.write("You r in About page");
     }
+    else if(req.url === "/dataRes") {
+        res.write("Ok javid u done");
+    }
     res.end();
 })
 
