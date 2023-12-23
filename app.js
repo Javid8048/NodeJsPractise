@@ -1,20 +1,38 @@
-const express = require("express");
-const path = require("path");
+// const express = require("express")
+// const morgan = require("morgan")
+// const authorize = require("./authorize")
+// const {datas} = require("./data")
+// const {readFileSync, writeFileSync, read} = require("fs")
+// const {router} = require("./router");
 
+// const app = express();
+
+// app.use(express.static("./publicFolder"))
+// app.use(express.urlencoded({extended: false}))
+// app.use(morgan("tiny"));
+// app.use(router)
+// // app.get("/data", (req, res)=> {
+// //     res.json(datas)
+// // })
+
+// app.listen(5000)
+
+
+const express = require('express');
+const route = require("./router")
 const app = express();
-app.use(express.static("./publicFolder"));
-
-app.get('/', (req, res) => {
-    res.status(200).send("Success /")
+const PORT = 3000;
+ 
+// Single routing
+ 
+route.get('/', function (req, res, next) {
+    console.log("Router Working");
+    res.end();
+})
+ 
+app.use("/", route);
+ 
+app.listen(PORT, function (err) {
+    if (err) console.log(err);
+    console.log("Server listening on PORT", PORT);
 });
-app.get('/webPage', (req, res) => {
-    res.status(200).sendFile(path.resolve(__dirname, "./webPage/webPageIndex.html"))
-})
-
-app.all("*", (req, res) => {
-    res.status(500).send("<h1 style='text-align: center'>404 page not found</h1>")
-})
-
-
-
-app.listen(5000);
